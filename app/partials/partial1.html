@@ -1,1 +1,66 @@
-<p>This is the partial for view 1.</p>
+<div class="container">
+<h1>Moods</h1>
+	<div class="btn-group btn-group-justified add-new-btn">
+		<div class="btn-group">
+   		 <button type="button" class="btn btn-default" ng-init="isAddNew=false"
+   		 		ng-click="addNewClick($event)">Add New</button>
+ 		 </div>
+	</div>
+	<div class="panel panel-default" ng-show="isAddNew" ng-init="newItem={}">
+  		<div class="panel-body">
+    		<div class="input-group" >
+  				<span class="input-group-addon">Name</span>
+ 				 <input type="text" class="form-control" placeholder="Name"
+ 				 	ng-model="newItem.name">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">AltName</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Alternative Name" ng-model="newItem.altName">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Status</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Status" ng-model="newItem.status">
+			</div>
+			<div class="panel-buttons">
+				<button type="button" class="btn btn-success save-btn" 
+						ng-click="AddNewSaveClick(newItem)">Save
+				</button>
+			</div>
+  		</div>
+	</div>
+	<accordion close-others="true">
+		<accordion-group ng-repeat="item in items" class="clearfix" 
+						 is-open="item.isOpen">
+  			<accordion-heading class="clearfix">
+    				{{item.name}} - {{item.altName}}
+    					<div class="btn-group btn-group-sm panel-buttons">
+    					  	<button type="button" class="btn btn-danger"
+    				  				ng-click="deleteItemClick(item, $event)">Delete</button>
+    						<button type="button" class="btn btn-primary"
+    								ng-click="editClick(item, $event)">Edit</button>
+  							<button type="button" class="btn btn-success"
+  									ng-click="saveClick(item, $event)">Save</button>
+    					</div>
+  			</accordion-heading>
+   			<div ng-init="item.edit=true">
+   				<div class="input-group">
+  					<span class="input-group-addon">Name</span>
+ 					 <input type="text" class="form-control" ng-model="item.name" 
+ 					 		ng-disabled="item.edit">
+ 				</div>
+ 				<div class="input-group">
+ 					<span class="input-group-addon">AltName</span>
+ 					 <input type="text" class="form-control" ng-model="item.altName" 
+ 					 		ng-disabled="item.edit">
+ 				</div>
+ 				<div class="input-group">
+ 					<span class="input-group-addon">status</span>
+ 					 <input type="text" class="form-control" ng-model="item.status" 
+ 					 		ng-disabled="item.edit">
+ 				</div>
+    		</div>
+		</accordion-group>
+	</accordion>
+</div>

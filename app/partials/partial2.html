@@ -1,5 +1,58 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<div class="container">
+<h1>Events</h1>
+<!--- Adding a new object  -->
+	<div class="container">
+		<div class="btn-group btn-group-justified add-new-btn">
+			<div class="btn-group">
+   			 <button type="button" class="btn btn-default" ng-init="isAddNew=true"
+   		 			ng-click="addNewClick($event)">Add New</button>
+ 			 </div>
+		</div>
+		<div class="panel panel-default" ng-show="isAddNew" ng-init="newItem={}">
+  		<div class="panel-body">
+    		<div class="input-group" >
+  				<span class="input-group-addon">Title</span>
+ 				 <input type="text" class="form-control" placeholder="Title"
+ 				 	ng-model="newItem.title">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Description</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Description" ng-model="newItem.desc">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Address</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="City" ng-model="newItem.address.city">
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Province" ng-model="newItem.address.province">
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Street" ng-model="newItem.address.street">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Status</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Status" ng-model="newItem.status">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Date</span>
+ 				 
+              		<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="newItem.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+            		  <span class="input-group-btn">
+             			   <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            		  </span>
+            
+			</div>
+			<div class="panel-buttons">
+				<button type="button" class="btn btn-success save-btn" 
+						ng-click="AddNewSaveClick(newItem)">Save
+				</button>
+			</div>
+  		</div>
+	</div>
+	</div>
+<!--- Object listing -->
+<div class="container">
+	
+</div>
+</div>

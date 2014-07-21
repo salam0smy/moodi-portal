@@ -28,3 +28,21 @@
   content: "";
   padding: 0;
 }
+
+#main {
+  padding-top: 100px;
+}
+
+.input-group{
+  margin: 10px;
+}
+
+.panel-buttons{
+  float:right;
+  margin-top: -6px;
+}
+
+.add-new-btn{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
