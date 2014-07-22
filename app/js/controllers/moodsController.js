@@ -9,25 +9,17 @@ angular.module('moodiPortal.controllers')
 		altName: "alternative Name",
 		status: "Status"
 	}
-	$scope.itemClick = function(item, items){
-		angular.forEach(items, function(value, key) {
-			value.open = false;
-		});
-		item.open = true;
-	};
 
 	$scope.editClick = function(item, e){
-    if(e)
-        e.preventDefault();
-		
-			item.edit = !item.edit;
-		  item.isOpen = false;
+    	if(e)
+      	  e.preventDefault();
+		item.edit = !item.edit;
+		item.isOpen = false;
 	};
 
 	$scope.saveClick = function(item){
 		item.$update();
 
-		//$scope.backToList();
 	}
 
 	$scope.backToList = backToList;
@@ -43,7 +35,6 @@ angular.module('moodiPortal.controllers')
   	}
 
   	$scope.AddNewSaveClick = function(items){
- 
   		var saved = moodFactory.save(items);
   		saved.$promise.then(function(obj){
   			$log.info(obj);

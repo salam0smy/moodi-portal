@@ -41,6 +41,11 @@
   float:right;
   margin-top: -6px;
 }
+.btn-right{
+  float:right;
+}
+.btn.btn-right{
+}
 
 .add-new-btn{
   margin-top: 15px;

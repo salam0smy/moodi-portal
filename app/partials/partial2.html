@@ -1,10 +1,10 @@
 <div class="container">
 <h1>Events</h1>
 <!--- Adding a new object  -->
-	<div class="container">
+	<div>
 		<div class="btn-group btn-group-justified add-new-btn">
 			<div class="btn-group">
-   			 <button type="button" class="btn btn-default" ng-init="isAddNew=true"
+   			 <button type="button" class="btn btn-default"
    		 			ng-click="addNewClick($event)">Add New</button>
  			 </div>
 		</div>
@@ -43,6 +43,15 @@
             		  </span>
             
 			</div>
+			<div class="input-group clearfix">
+				<span class="input-group-addon">Moods</span>
+				<input type="text" class="form-control" ng-model="newItem.nMood" placeholder="Moods" typeahead="mood.name for mood in moodsList | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="moodSelected($item, $model, $label)">
+				<ul class="list-group clearfix">
+ 				 <li class="list-group-item" ng-repeat="mood in newItem.moodsSelected">{{mood.name}}<button class="btn btn-danger btn-sm panel-buttons" ng-click="removeItem(mood, newItem.moodsSelected)"><i class="glyphicon glyphicon-remove"></i>Remove</button></li>
+			</ul>
+			</div>
+			
+
 			<div class="panel-buttons">
 				<button type="button" class="btn btn-success save-btn" 
 						ng-click="AddNewSaveClick(newItem)">Save
@@ -52,7 +61,60 @@
 	</div>
 	</div>
 <!--- Object listing -->
-<div class="container">
-	
-</div>
+	<accordion close-others="true">
+		<accordion-group ng-repeat="item in eventItems" class="clearfix" 
+						 is-open="item.isOpen">
+			<accordion-heading class="clearfix">
+    				{{item.title}}
+    					<div class="btn-group btn-group-sm panel-buttons">
+    					  	<button type="button" class="btn btn-danger"
+    				  				ng-click="deleteItemClick(item, $event)">Delete</button>
+    						<button type="button" class="btn btn-primary"
+    								ng-click="editClick(item, $event)">Edit</button>
+  							<button type="button" class="btn btn-success"
+  									ng-click="saveClick(item, $event)">Save</button>
+    					</div>
+  			</accordion-heading>
+  			<div ng-init="item.edit=true">
+   				<div class="input-group" >
+  				<span class="input-group-addon">Title</span>
+ 				 <input type="text" class="form-control" placeholder="Title"
+ 				 	ng-model="item.title" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Description</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Description" ng-model="item.desc" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Address</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="City" ng-model="item.address.city" ng-disabled="item.edit">
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Province" ng-model="item.address.province" ng-disabled="item.edit">
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Street" ng-model="item.address.street" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Status</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Status" ng-model="item.status" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Date</span>
+ 				 
+              		<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="item.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-disabled="item.edit"/>
+            		  <span class="input-group-btn">
+             			   <button type="button" class="btn btn-default" ng-click="open($event)" ng-disabled="item.edit"><i class="glyphicon glyphicon-calendar"></i></button>
+            		  </span>
+			</div>
+			<div class="input-group">
+			<span class="input-group-addon">Moods</span>
+				<ul class="list-group clearfix">
+ 				 <li class="list-group-item" ng-repeat="mood in item.moods">{{mood}}<button class="btn btn-danger btn-sm panel-buttons" ng-click="removeItem(mood, newItem.moodsSelected)"><i class="glyphicon glyphicon-remove"></i>Remove</button></li>
+			</ul>
+			</div>
+    		</div>
+		</accordion-group>
+	</accordion>
 </div>
