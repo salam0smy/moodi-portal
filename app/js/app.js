@@ -21,6 +21,10 @@ config(['$routeProvider','$httpProvider',
                                 templateUrl: 'partials/partial2.html', 
                                 controller: 'EventCtrl'
                               });
+  $routeProvider.when('/concierge/:id', {
+                                templateUrl: 'partials/partial3.html', 
+                                controller: 'conciergeCtrl'
+                              });
   $routeProvider.otherwise({redirectTo: '/moods'});
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];

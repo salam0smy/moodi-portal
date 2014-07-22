@@ -27,7 +27,7 @@ angular.module('moodiPortal.controllers')
   	function backToList() {
   		$scope.items = null;
   		$scope.items = moodFactory.query();
-   	 	$location.path("moods");
+   	 	$location.path("/moods");
   	}
 
   	$scope.addNewClick = function($event){
@@ -54,6 +54,9 @@ angular.module('moodiPortal.controllers')
   		}
   		//$scope.backToList();
   	}
+    $scope.concClick = function(_id){
+        $location.path("/concierge/"+_id);
+    };
 
   	function clearItem(data){
   		for (var k in data) {

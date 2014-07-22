@@ -57,7 +57,7 @@ angular.module('moodiPortal.controllers')
   function backToList() {
       $scope.eventItems = null;
       $scope.eventItems = eventFactory.query();
-      $location.path("events");
+      $location.path("/events");
     }
 
     $scope.moodsList = moodFactory.query();

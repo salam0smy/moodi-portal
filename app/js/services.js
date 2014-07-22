@@ -62,4 +62,8 @@ angular.module('moodiPortal.services', []).
                }].concat($http.defaults.transformResponse)
               }
       });
-  });
+  }).
+  factory('conciergeFactory', function($resource) {
+    return $resource('http://localhost:8081/concierge/:id', 
+      { id:'@_id' });
+  });;

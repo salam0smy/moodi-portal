@@ -1,0 +1,50 @@
+<div class="container">
+	 <accordion close-others="false">
+	 	<accordion-group heading="{{item.title}}" 
+	 					 ng-repeat="item in events">
+	      
+
+	 					 <div ng-init="item.edit=true">
+   				<div class="input-group" >
+  				<span class="input-group-addon">Title</span>
+ 				 <input type="text" class="form-control" placeholder="Title"
+ 				 	ng-model="item.title" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Description</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Description" ng-model="item.desc" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Address</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="City" ng-model="item.address.city" ng-disabled="item.edit">
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Province" ng-model="item.address.province" ng-disabled="item.edit">
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Street" ng-model="item.address.street" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Status</span>
+ 				 <input type="text" class="form-control" 
+ 				 placeholder="Status" ng-model="item.status" ng-disabled="item.edit">
+			</div>
+			<div class="input-group">
+  				<span class="input-group-addon">Date</span>
+ 				 
+              		<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="item.date" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close" ng-disabled="item.edit"/>
+            		  <span class="input-group-btn">
+             			   <button type="button" class="btn btn-default" ng-click="open($event)" ng-disabled="item.edit"><i class="glyphicon glyphicon-calendar"></i></button>
+            		  </span>
+			</div>
+			<div class="input-group">
+			<span class="input-group-addon">Moods</span>
+				<ul class="list-group clearfix">
+ 				 <li class="list-group-item" ng-repeat="mood in item.moods">{{mood}}</li>
+			</ul>
+			</div>
+    		</div>
+
+	    </accordion-group>
+	 </accordion>
+</div>
