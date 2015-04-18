@@ -2,7 +2,9 @@
 
 angular.module('moodiPortal.controllers')
   .controller('EventCtrl', ['$scope','eventFactory','$location','$log', 'moodFactory',
-                            function($scope, eventFactory, $location, $log, moodFactory) {
+                            '$upload',
+                            function($scope, eventFactory, $location, $log, moodFactory,
+                                      $upload) {
 
     $scope.eventItems = eventFactory.query();
     $scope.isAddNew=false;
@@ -99,4 +101,28 @@ angular.module('moodiPortal.controllers')
         value.ticked = false;
     });
     }
+
+    $scope.getImageUploadURL = function(_id){
+      return "http://moodi-api.herokuapp.com/events/"+_id+"/image";
+    }
+
+    $scope.onFileSelect = function($files, item){
+      console.log($files);
+        var $file = $files[0];
+        item.imageName = $file.name;
+        item.uploading = true;
+        $upload.upload({
+            url: $scope.getImageUploadURL(item._id),
+            file: $file,
+
+        }).progress(function(evt) {
+            item.uploaded = parseInt(100.0 * evt.loaded / evt.total);
+        })
+        .success(function(data, status, headers, config) {
+        // file is uploaded successfully
+        console.log(data);
+        item.uploading = false;
+      });
+    }
+
   }]);

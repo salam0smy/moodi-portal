@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('moodiPortal.controllers')
-  .controller('MoodsCtrl', ['$scope', 'moodFactory','$location','$log', 
-  							function($scope, moodFactory, $location, $log) {
+  .controller('MoodsCtrl', ['$scope', 'moodFactory','$location','$log', '$upload',
+  							function($scope, moodFactory, $location, $log, $upload) {
 	$scope.items = moodFactory.query();
 	$scope.newItem = {
 		name: "name",
@@ -57,6 +57,29 @@ angular.module('moodiPortal.controllers')
     $scope.concClick = function(_id){
         $location.path("/concierge/"+_id);
     };
+
+    $scope.getImageUploadURL = function(_id){
+      return "http://moodi-api.herokuapp.com/moods/"+_id+"/image";
+    }
+
+    $scope.onFileSelect = function($files, item){
+      console.log($files);
+        var $file = $files[0];
+        item.imageName = $file.name;
+        item.uploading = true;
+        $upload.upload({
+            url: $scope.getImageUploadURL(item._id),
+            file: $file,
+
+        }).progress(function(evt) {
+            item.uploaded = parseInt(100.0 * evt.loaded / evt.total);
+        })
+        .success(function(data, status, headers, config) {
+        // file is uploaded successfully
+        console.log(data);
+        item.uploading = false;
+      });
+    }
 
   	function clearItem(data){
   		for (var k in data) {

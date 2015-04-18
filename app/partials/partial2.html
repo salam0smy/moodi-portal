@@ -22,6 +22,8 @@
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon">Address</span>
+          <input type="text" class="form-control" 
+         placeholder="Place Name" ng-model="newItem.address.name">
  				 <input type="text" class="form-control" 
  				 placeholder="City" ng-model="newItem.address.city">
  				 <input type="text" class="form-control" 
@@ -41,8 +43,11 @@
             		  <span class="input-group-btn">
              			   <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             		  </span>
-            
 			</div>
+      <div class="input-group">
+      <span class="input-group-addon">Time</span>
+        <timepicker ng-model="newItem.date"></timepicker>
+      </div>
 			<div class="input-group clearfix">
 				<span class="input-group-addon">Moods</span>
 				<input type="text" class="form-control" ng-model="newItem.nMood" placeholder="Moods" typeahead="mood.name for mood in moodsList | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="moodSelected($item, $model, $label)">
@@ -88,6 +93,8 @@
 			</div>
 			<div class="input-group">
   				<span class="input-group-addon">Address</span>
+          <input type="text" class="form-control" 
+         placeholder="Place Name" ng-model="item.address.name" ng-disabled="item.edit">
  				 <input type="text" class="form-control" 
  				 placeholder="City" ng-model="item.address.city" ng-disabled="item.edit">
  				 <input type="text" class="form-control" 
@@ -114,6 +121,23 @@
  				 <li class="list-group-item" ng-repeat="mood in item.moods">{{mood}}<button class="btn btn-danger btn-sm panel-buttons" ng-click="removeItem(mood, newItem.moodsSelected)"><i class="glyphicon glyphicon-remove"></i>Remove</button></li>
 			</ul>
 			</div>
+			<!-- Image upload -->
+        <div>
+
+          <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Browse&hellip; 
+                        <input type="file" ng-file-select="onFileSelect($files, item)"
+                               accept="image/*"/>
+                    </span>
+                </span>
+                <input type="text" class="form-control" 
+                       ng-model="item.imageName" ng-disabled="true"/> 
+          </div>
+          <progressbar value="item.uploaded" class="progress-striped active"
+                    max="100" ng-show="item.uploading">Uploading</progressbar>
+        </div>
     		</div>
 		</accordion-group>
 	</accordion>

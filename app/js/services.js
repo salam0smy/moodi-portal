@@ -8,7 +8,7 @@
 angular.module('moodiPortal.services', []).
   value('version', '0.1').
   factory('moodFactory', function($resource, $http, $log) {
-  	return $resource('http://localhost:8081/moods/:Id', 
+  	return $resource('http://moodi-api.herokuapp.com/moods/:Id', 
   		{ Id:'@_id' },
   		{ 
   			update: { 
@@ -38,7 +38,7 @@ angular.module('moodiPortal.services', []).
   		});
   }).
   factory('eventFactory', function($resource, $http, $log) {
-    return $resource('http://localhost:8081/events/:Id', 
+    return $resource('http://moodi-api.herokuapp.com/events/:Id', 
       { Id:'@_id' },
       { 
         update: { 
@@ -64,6 +64,6 @@ angular.module('moodiPortal.services', []).
       });
   }).
   factory('conciergeFactory', function($resource) {
-    return $resource('http://localhost:8081/concierge/:id', 
+    return $resource('http://moodi-api.herokuapp.com/concierge/:id', 
       { id:'@_id' });
   });;

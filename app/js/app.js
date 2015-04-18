@@ -9,7 +9,8 @@ angular.module('moodiPortal', [
   'moodiPortal.directives',
   'moodiPortal.controllers',
   'ui.bootstrap',
-  'ngResource'
+  'ngResource',
+  'angularFileUpload'
 ]).
 config(['$routeProvider','$httpProvider', 
        function($routeProvider, $httpProvider) {

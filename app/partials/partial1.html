@@ -31,8 +31,10 @@
   		</div>
 	</div>
 	<accordion close-others="true">
+ 
 		<accordion-group ng-repeat="item in items" class="clearfix" 
 						 is-open="item.isOpen">
+              <div>
   			<accordion-heading class="clearfix">
     				{{item.name}} - {{item.altName}}
     					<div class="btn-group btn-group-sm panel-buttons">
@@ -60,9 +62,29 @@
  					 <input type="text" class="form-control" ng-model="item.status" 
  					 		ng-disabled="item.edit">
  				</div>
+        <!-- Image upload -->
+        <div>
+
+          <div class="input-group">
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        Browse&hellip; 
+                        <input type="file" ng-file-select="onFileSelect($files, item)"
+                               accept="image/*"/>
+                    </span>
+                </span>
+                <input type="text" class="form-control" 
+                       ng-model="item.imageName" ng-disabled="true"/> 
+          </div>
+          <progressbar value="item.uploaded" class="progress-striped active"
+                    max="100" ng-show="item.uploading">Uploading</progressbar>
+        </div>
+
         <button type="button" class="btn btn-primary btn-sm" 
                 ng-click="concClick(item._id)">Concierge</button>
     		</div>
+        </div>
 		</accordion-group>
+
 	</accordion>
 </div>
